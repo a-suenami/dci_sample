@@ -1,0 +1,27 @@
+<h1>Listing some_models</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @some_models.each do |some_model| %>
+      <tr>
+        <td><%= some_model.name %></td>
+        <td><%= link_to 'Show', some_model %></td>
+        <td><%= link_to 'Edit', edit_some_model_path(some_model) %></td>
+        <td><%= link_to 'Destroy', some_model, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Some model', new_some_model_path %>
