@@ -24,10 +24,12 @@ class SomeModelsController < ApplicationController
   # POST /some_models
   # POST /some_models.json
   def create
-    @some_model = SomeModel.new(some_model_params)
+    @some_model = SomeModel.new
+
+    context = SomeModelRegistrationContext.new(@some_model)
 
     respond_to do |format|
-      if @some_model.save
+      if context.receive_params_and_register(some_model_params)
         format.html { redirect_to @some_model, notice: 'Some model was successfully created.' }
         format.json { render action: 'show', status: :created, location: @some_model }
       else
