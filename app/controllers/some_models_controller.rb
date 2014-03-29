@@ -42,8 +42,10 @@ class SomeModelsController < ApplicationController
   # PATCH/PUT /some_models/1
   # PATCH/PUT /some_models/1.json
   def update
+    context = SomeModelEditingContext.new(@some_model)
+
     respond_to do |format|
-      if @some_model.update(some_model_params)
+      if context.receive_params_and_edit(some_model_params)
         format.html { redirect_to @some_model, notice: 'Some model was successfully updated.' }
         format.json { head :no_content }
       else
